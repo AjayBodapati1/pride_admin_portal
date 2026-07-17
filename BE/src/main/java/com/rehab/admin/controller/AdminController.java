@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
@@ -16,13 +17,14 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/getUsers")
+    @GetMapping("/getStudents")
     public ResponseEntity<List<User>> getUsers(){
-        return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
+        return new ResponseEntity<>(userService.getStudents(), HttpStatus.OK);
     }
 
     @PostMapping("/addUser")
     public ResponseEntity<User> createUser(@RequestBody User user) {
+        System.out.println(user.toString());
         User savedUser = userService.createUser(user);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }

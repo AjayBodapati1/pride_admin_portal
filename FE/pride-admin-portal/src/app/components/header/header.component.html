@@ -1,0 +1,33 @@
+<header class="app-header">
+  <h1>My App</h1>
+
+  <nav *ngIf="isLoggedIn$ | async" class="nav-links">
+    <a routerLink="/home" routerLinkActive="active-tab">Home</a>
+    <a routerLink="/students" routerLinkActive="active-tab">Students</a>
+    <a routerLink="/attendance" routerLinkActive="active-tab">Attendance</a>
+    <a routerLink="/message" routerLinkActive="active-tab">Messages</a>
+
+    <div class="dropdown-wrapper">
+      <button class="dropdown-toggle" (click)="showDropdown = !showDropdown">
+        Admin Services ▾
+      </button>
+
+      <div
+        *ngIf="showDropdown"
+        class="dropdown-menu"
+        (click)="showDropdown = false"
+      >
+        <a routerLink="/newUser" routerLinkActive="active-sub-tab"
+          >Add Student/Employee</a
+        >
+        <a routerLink="/editUser" routerLinkActive="active-sub-tab"
+          >Edit Student/Employee</a
+        >
+      </div>
+    </div>
+  </nav>
+
+  <button *ngIf="isLoggedIn$ | async" class="logout-btn" (click)="onLogout()">
+    Logout
+  </button>
+</header>

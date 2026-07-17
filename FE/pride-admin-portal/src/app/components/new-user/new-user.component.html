@@ -1,0 +1,45 @@
+<div class="form-container">
+  <h2>Add New User</h2>
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input id="name" type="text" formControlName="name" />
+    </div>
+
+    <div class="form-group">
+      <label for="dateOfBirth">Date of Birth:</label>
+      <input id="dateOfBirth" type="date" formControlName="dateOfBirth" />
+    </div>
+
+    <div class="form-group">
+      <label for="fatherName">Father's Name:</label>
+      <input id="fatherName" type="text" formControlName="fatherName" />
+    </div>
+
+    <div class="form-group">
+      <label for="mobileNumber">Mobile Number:</label>
+      <input id="mobileNumber" type="text" formControlName="mobileNumber" />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input id="email" type="email" formControlName="email" />
+    </div>
+
+    <div class="form-group">
+      <label for="dateOfJoining">Date of Joining:</label>
+      <input id="dateOfJoining" type="date" formControlName="dateOfJoining" />
+    </div>
+
+    <div class="form-group">
+      <label for="role">Role:</label>
+      <select id="role" formControlName="role">
+        <option value="student">Student</option>
+        <option value="employee">Employee</option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="userForm.invalid">Submit</button>
+  </form>
+</div>

@@ -21,12 +21,14 @@ public class UserService {
     private static final PasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public User createUser(User user) {
-        user.setPassword(encoder.encode(user.getPassword()));
+        String password = user.getName().toLowerCase().substring(0, 4) + user.getDateOfBirth().getYear();
+        user.setActive(true);
+        user.setPassword(encoder.encode(password));
         return userRepository.save(user);
     }
 
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    public List<User> getStudents() {
+        return userRepository.getStudents();
     }
 
     public User editUser(String email, User userDetails) {

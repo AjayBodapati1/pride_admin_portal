@@ -1,25 +1,23 @@
 package com.rehab.admin.controller;
 
-import com.rehab.admin.model.User;
-import com.rehab.admin.service.UserService;
+import com.rehab.admin.model.LoginCredentials;
+import com.rehab.admin.service.PublicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/public")
 public class PublicController {
 
     @Autowired
-    private UserService userService;
+    private PublicService publicService;
 
-    @GetMapping("/getEmployees")
-    public ResponseEntity<List<User>> getEmployees(){
-        return new ResponseEntity<>(userService.getEmployees(), HttpStatus.OK);
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginCredentials credentials){
+        return new ResponseEntity<>(publicService.verify(credentials), HttpStatus.OK) ;
     }
+
 }

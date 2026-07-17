@@ -1,0 +1,105 @@
+/* Center the container on the screen */
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f6; /* Soft, neutral background */
+}
+
+/* Form Container Card */
+.login-container {
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  transition: transform 0.2s ease;
+}
+
+.login-container:hover {
+  transform: translateY(-2px);
+}
+
+/* Heading */
+.login-container h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #333333;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Form Groups */
+.login-container form div {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+.login-container label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #666666;
+  margin-bottom: 0.5rem;
+}
+
+/* Input Fields */
+.login-container input {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  outline: none;
+  background-color: #fafafa;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Input Focus States */
+.login-container input:focus {
+  border-color: #4a90e2;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+}
+
+/* Submit Button */
+.login-container button[type="submit"] {
+  width: 100%;
+  padding: 0.85rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #4a90e2;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.login-container button[type="submit"]:hover {
+  background-color: #357abd;
+}
+
+/* Disabled Button State (Angular Specific) */
+.login-container button[type="submit"]:disabled {
+  background-color: #cccccc;
+  color: #888888;
+  cursor: not-allowed;
+}
+
+/* Error Message styling */
+.login-container p {
+  font-size: 0.85rem;
+  text-align: center;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background-color: #fff0f0;
+  border-radius: 4px;
+  border-left: 4px solid #e74c3c;
+}
