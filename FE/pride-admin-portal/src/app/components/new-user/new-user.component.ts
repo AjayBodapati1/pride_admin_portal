@@ -4,8 +4,8 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-new-user',
-  standalone: true, // Ensured standalone is clear
-  imports: [ReactiveFormsModule], // Import ReactiveFormsModule here
+  standalone: true,
+  imports: [ReactiveFormsModule],
   templateUrl: './new-user.component.html',
   styleUrl: './new-user.component.css'
 })
@@ -29,12 +29,12 @@ export class NewUserComponent {
   onSubmit(): void {
     if (this.userForm.valid) {
       const formData = this.userForm.value;
-      
+
       this.http.post(this.apiUrl, formData).subscribe({
         next: (response) => {
           console.log('User added successfully!', response);
           alert('User created successfully!');
-          this.userForm.reset({ role: 'admin', active: true });
+          this.userForm.reset({ role: '', active: true });
         },
         error: (error) => {
           console.error('Error adding user:', error);

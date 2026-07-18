@@ -1,6 +1,8 @@
 package com.rehab.admin.controller;
 
+import com.rehab.admin.model.MailRequest;
 import com.rehab.admin.model.User;
+import com.rehab.admin.service.MailService;
 import com.rehab.admin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,9 +19,17 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private MailService mailService;
+
     @GetMapping("/getStudents")
     public ResponseEntity<List<User>> getUsers(){
         return new ResponseEntity<>(userService.getStudents(), HttpStatus.OK);
+    }
+
+    @GetMapping("/getAll")
+    public ResponseEntity<List<User>> getAll(){
+        return new ResponseEntity<>(userService.getAll(), HttpStatus.OK);
     }
 
     @PostMapping("/addUser")
@@ -38,6 +48,11 @@ public class AdminController {
     @GetMapping("/getEmployees")
     public ResponseEntity<List<User>> getEmployees(){
         return new ResponseEntity<>(userService.getEmployees(), HttpStatus.OK);
+    }
+
+    @PostMapping("/sendEmail")
+    public ResponseEntity<String> sendEmail(@RequestBody MailRequest mailRequest){
+        return new ResponseEntity<>(mailService.sendEmail(mailRequest), HttpStatus.OK);
     }
 
 }

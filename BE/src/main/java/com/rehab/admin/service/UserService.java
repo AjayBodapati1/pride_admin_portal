@@ -9,7 +9,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -49,5 +48,17 @@ public class UserService {
 
     public List<User> getEmployees() {
         return userRepository.getEmployees();
+    }
+
+    public List<User> getActiveStudents() {
+        return userRepository.getActiveStudents();
+    }
+
+    public List<User> getActiveEmployees() {
+        return userRepository.getActiveEmployees();
+    }
+
+    public List<User> getAll() {
+        return userRepository.getAll();
     }
 }

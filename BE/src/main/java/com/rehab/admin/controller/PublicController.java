@@ -1,6 +1,7 @@
 package com.rehab.admin.controller;
 
 import com.rehab.admin.model.LoginCredentials;
+import com.rehab.admin.model.User;
 import com.rehab.admin.service.PublicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,11 @@ public class PublicController {
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginCredentials credentials){
         return new ResponseEntity<>(publicService.verify(credentials), HttpStatus.OK) ;
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<User> register(@RequestBody User user){
+        return new ResponseEntity<>(publicService.registerUser(user), HttpStatus.OK) ;
     }
 
 }

@@ -1,98 +1,27 @@
-/* Center the card on the screen */
-.maintenance-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 70vh; /* Takes up most of the viewport height */
-  background-color: #f8fafc; /* Ultra-light neutral background */
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  padding: 20px;
-}
 
-/* The card container */
-.maintenance-card {
-  background: #ffffff;
-  padding: 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 
-              0 8px 10px -6px rgba(0, 0, 0, 0.05);
-  max-width: 450px;
-  width: 100%;
-  text-align: center;
-  border-top: 4px solid #eab308; /* Warning yellow accent bar */
-  transition: transform 0.3s ease;
-}
+.container { padding: 20px; }
 
-.maintenance-card:hover {
-  transform: translateY(-4px); /* Gentle hover effect */
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 1000;
 }
+.modal-content {
+  background-color: white; padding: 24px; border-radius: 8px;
+  width: 550px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.form-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;
+}
+.form-group { display: flex; flex-direction: column; }
+.form-group label { font-size: 12px; margin-bottom: 4px; font-weight: bold; }
+.form-group input { padding: 6px; border: 1px solid #ccc; border-radius: 4px; }
+.checkbox-group { justify-content: center; grid-column: span 2; }
+.checkbox-group label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
 
-/* Icon / Emoji Styling with a subtle animation */
-.maintenance-icon {
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-  animation: float 3s ease-in-out infinite;
-  display: inline-block;
-}
-
-/* Main maintenance text */
-.maintenance-text {
-  font-size: 1.25rem;
-  color: #1e293b; /* Dark slate */
-  font-weight: 600;
-  line-height: 1.5;
-  margin: 0 0 0.75rem 0;
-}
-
-/* Secondary helper text */
-.maintenance-subtext {
-  font-size: 0.95rem;
-  color: #64748b; /* Soft gray */
-  line-height: 1.6;
-  margin: 0 0 1.5rem 0;
-}
-
-/* CSS Loader Dots */
-.loader-dots {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-}
-
-.loader-dots span {
-  width: 8px;
-  height: 8px;
-  background-color: #cbd5e1;
-  border-radius: 50%;
-  animation: pulse 1.5s infinite ease-in-out;
-}
-
-.loader-dots span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.loader-dots span:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-/* Animations */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(0.8);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 1;
-    background-color: #eab308; /* Dot highlights yellow at peak */
-  }
-}
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; }
+.btn-cancel { background: #6c757d; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+.btn-submit { background: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+.btn-submit:disabled { background: #a3e4b8; cursor: not-allowed; }

@@ -21,7 +21,7 @@ export class LoginComponent {
   onSubmit(): void {
     this.authService.login(this.credentials).subscribe({
       next: () => {
-        this.router.navigate(['/students']);
+        this.router.navigate(['/home']);
       },
       error: (err) => {
         this.errorMessage = 'Invalid email or password.';

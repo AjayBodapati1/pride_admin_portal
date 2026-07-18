@@ -39,8 +39,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request -> request
                         .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll() // 2. Allow preflight
                         .requestMatchers("/public/**").permitAll()
-//                        .requestMatchers("/admin/**").hasAuthority("Admin")
-                        .requestMatchers("/admin/**").hasRole("Admin")
+                        .requestMatchers("/admin/**").hasRole("admin")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

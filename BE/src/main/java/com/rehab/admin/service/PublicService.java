@@ -22,6 +22,9 @@ public class PublicService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private UserRepository userRepository;
+
     private static final PasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public String verify(LoginCredentials credentials) {
@@ -31,5 +34,11 @@ public class PublicService {
                 return jwtService.generateToken(credentials.getEmail());
         }
         return "incorrect credentials";
+    }
+
+    public User registerUser(User user) {
+        user.setActive(true);
+        user.setPassword(encoder.encode(user.getPassword()));
+        return userRepository.save(user);
     }
 }
