@@ -79,8 +79,7 @@ export class StudentsComponent implements OnInit {
           this.students = data;
           this.isLoading = false;
         },
-        error: (err) => {
-          console.error(err);
+        error: (error) => {
           this.errorMessage = 'Failed to load data from backend server.';
           this.isLoading = false;
         }

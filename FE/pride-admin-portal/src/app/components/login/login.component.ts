@@ -17,7 +17,11 @@ export class LoginComponent {
 
   private authService = inject(AuthService);
   private router = inject(Router);
-    
+
+  ngOnInit(): void {
+    this.authService.logout();
+  }
+
   onSubmit(): void {
     this.authService.login(this.credentials).subscribe({
       next: () => {
