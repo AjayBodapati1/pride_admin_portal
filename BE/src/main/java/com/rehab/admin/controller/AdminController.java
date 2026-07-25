@@ -1,11 +1,15 @@
 package com.rehab.admin.controller;
 
 import com.rehab.admin.model.MailRequest;
+import com.rehab.admin.model.PdfRequest;
 import com.rehab.admin.model.User;
 import com.rehab.admin.service.MailService;
+import com.rehab.admin.service.PdfService;
 import com.rehab.admin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +25,9 @@ public class AdminController {
 
     @Autowired
     private MailService mailService;
+
+    @Autowired
+    private PdfService pdfService;
 
     @GetMapping("/getStudents")
     public ResponseEntity<List<User>> getUsers(){
@@ -53,6 +60,18 @@ public class AdminController {
     @PostMapping("/sendEmail")
     public ResponseEntity<String> sendEmail(@RequestBody MailRequest mailRequest){
         return new ResponseEntity<>(mailService.sendEmail(mailRequest), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/generate", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<byte[]> generate(@RequestBody PdfRequest request) throws Exception {
+
+        byte[] pdf = pdfService.generatePdf(request);
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION,
+                        "attachment; filename=Report.pdf")
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(pdf);
     }
 
 }

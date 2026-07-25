@@ -1,0 +1,82 @@
+<div class="report-container">
+  <h2>Generate Patient Report</h2>
+
+  <form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="form-group flex-1">
+        <label for="name">Full Name *</label>
+        <input id="name" type="text" formControlName="name" />
+      </div>
+
+      <div class="form-group flex-1">
+        <label for="age">Age *</label>
+        <input id="age" type="number" formControlName="age" min="0" />
+      </div>
+
+      <div class="form-group flex-1">
+        <label for="gender">Gender *</label>
+        <select id="gender" formControlName="gender">
+          <option value="" disabled selected>Select</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="diagnosis">Professional Diagnosis *</label>
+      <input id="diagnosis" type="text" formControlName="diagnosis" />
+    </div>
+
+    <div class="form-group">
+      <label for="socialInteraction">Attention and Social Interaction *</label>
+      <textarea
+        id="socialInteraction"
+        formControlName="socialInteraction"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="respectiveLanguage">Receptive Language *</label>
+      <textarea
+        id="respectiveLanguage"
+        formControlName="respectiveLanguage"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="expressiveLanguage">Expressive Language *</label>
+      <textarea
+        id="expressiveLanguage"
+        formControlName="expressiveLanguage"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="schoolPerformance">School Performance *</label>
+      <textarea
+        id="schoolPerformance"
+        formControlName="schoolPerformance"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="summary">Summary *</label>
+      <textarea id="summary" formControlName="summary"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="recommendations">Recommendations *</label>
+      <textarea
+        id="recommendations"
+        formControlName="recommendations"
+      ></textarea>
+    </div>
+
+    <button type="submit" [disabled]="reportForm.invalid || isLoading">
+      <span *ngIf="!isLoading">Generate Report</span>
+      <span *ngIf="isLoading">Generating...</span>
+    </button>
+  </form>
+</div>

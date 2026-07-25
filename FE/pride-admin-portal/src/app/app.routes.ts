@@ -9,6 +9,7 @@ import { AttendanceComponent } from './components/attendance/attendance.componen
 import { MessageComponent } from './components/message/message.component';
 import { NewUserComponent } from './components/new-user/new-user.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { GenerateReportComponent } from './components/generate-report/generate-report.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', canActivate: [redirectGuard], component: LoginComponent },
@@ -19,5 +20,6 @@ export const routes: Routes = [
   { path: 'message', component: MessageComponent, canActivate: [authGuard] },
   { path: 'newUser', component: NewUserComponent, canActivate: [authGuard] },
   { path: 'editUser', component: EditUserComponent, canActivate: [authGuard] },
+  { path: 'generate-report', component: GenerateReportComponent, canActivate: [authGuard] },
   { path: '**', redirectTo: '' }
 ];
