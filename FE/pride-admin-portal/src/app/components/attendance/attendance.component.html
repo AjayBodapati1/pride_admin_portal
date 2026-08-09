@@ -1,13 +1,21 @@
-<div class="maintenance-container">
-  <div class="maintenance-card">
-    <div class="maintenance-icon">🚧</div>
-    <p class="maintenance-text">
-      The Attendance page is currently under maintenance.
-    </p>
-    <p class="maintenance-subtext">
-      We are polishing things up to make your experience better. Please check
-      back shortly!
-    </p>
-    <div class="loader-dots"><span></span><span></span><span></span></div>
+<div class="page-container">
+  <h2>Employee Attendance Management</h2>
+
+  <div *ngIf="errorMessage" class="error-alert">
+    {{ errorMessage }}
+  </div>
+
+  <div class="grid-wrapper">
+    <ag-grid-angular
+      style="width: 100%; height: 500px"
+      class="ag-theme-quartz"
+      [rowData]="users"
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      [pagination]="true"
+      [paginationPageSize]="10"
+      [paginationPageSizeSelector]="[5, 10, 20]"
+    >
+    </ag-grid-angular>
   </div>
 </div>

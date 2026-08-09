@@ -1,8 +1,11 @@
 package com.rehab.admin.controller;
 
+import com.rehab.admin.controller.dto.AttendanceDto;
+import com.rehab.admin.model.Attendance;
 import com.rehab.admin.model.MailRequest;
 import com.rehab.admin.model.PdfRequest;
 import com.rehab.admin.model.User;
+import com.rehab.admin.service.AttendanceService;
 import com.rehab.admin.service.MailService;
 import com.rehab.admin.service.PdfService;
 import com.rehab.admin.service.UserService;
@@ -28,6 +31,9 @@ public class AdminController {
 
     @Autowired
     private PdfService pdfService;
+
+    @Autowired
+    private AttendanceService attendanceService;
 
     @GetMapping("/getStudents")
     public ResponseEntity<List<User>> getUsers(){
@@ -72,6 +78,16 @@ public class AdminController {
                         "attachment; filename=Report.pdf")
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(pdf);
+    }
+
+    @PostMapping("/attendance")
+    public ResponseEntity<String> markAttendance(@RequestBody AttendanceDto dto) {
+        try {
+            attendanceService.markAttendance(dto);
+            return ResponseEntity.ok("Attendance recorded successfully");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
 }

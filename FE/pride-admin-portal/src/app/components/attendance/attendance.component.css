@@ -1,98 +1,71 @@
-/* Center the card on the screen */
-.maintenance-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 70vh; /* Takes up most of the viewport height */
-  background-color: #f8fafc; /* Ultra-light neutral background */
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  padding: 20px;
+/* Import structural and theme CSS styles */
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-quartz.css';
+
+:host {
+  display: block;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  padding: 2rem;
+  background-color: #f8f9fa;
 }
 
-/* The card container */
-.maintenance-card {
+.page-container {
   background: #ffffff;
-  padding: 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 
-              0 8px 10px -6px rgba(0, 0, 0, 0.05);
-  max-width: 450px;
-  width: 100%;
-  text-align: center;
-  border-top: 4px solid #eab308; /* Warning yellow accent bar */
-  transition: transform 0.3s ease;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-.maintenance-card:hover {
-  transform: translateY(-4px); /* Gentle hover effect */
-}
-
-/* Icon / Emoji Styling with a subtle animation */
-.maintenance-icon {
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-  animation: float 3s ease-in-out infinite;
-  display: inline-block;
-}
-
-/* Main maintenance text */
-.maintenance-text {
-  font-size: 1.25rem;
-  color: #1e293b; /* Dark slate */
+h2 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
   font-weight: 600;
-  line-height: 1.5;
-  margin: 0 0 0.75rem 0;
 }
 
-/* Secondary helper text */
-.maintenance-subtext {
-  font-size: 0.95rem;
-  color: #64748b; /* Soft gray */
-  line-height: 1.6;
-  margin: 0 0 1.5rem 0;
+.grid-wrapper {
+  margin-top: 1rem;
 }
 
-/* CSS Loader Dots */
-.loader-dots {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
+.error-alert {
+  padding: 1rem;
+  background-color: #f8d7da;
+  color: #721c24;
+  border-left: 5px solid #dc3545;
+  border-radius: 4px;
+  margin-bottom: 1rem;
 }
 
-.loader-dots span {
-  width: 8px;
-  height: 8px;
-  background-color: #cbd5e1;
-  border-radius: 50%;
-  animation: pulse 1.5s infinite ease-in-out;
+/* Custom styles for action button in grid */
+::v-deep .btn-action {
+  background-color: #0d6efd;
+  color: #ffffff;
+  border: none;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
 }
 
-.loader-dots span:nth-child(2) {
-  animation-delay: 0.2s;
+::v-deep .btn-action:hover {
+  background-color: #0b5ed7;
 }
 
-.loader-dots span:nth-child(3) {
-  animation-delay: 0.4s;
+/* Custom styles applied inside the custom column cell rendered for 'status' */
+::v-deep .status-badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
-/* Animations */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+::v-deep .status-present {
+  background-color: #d4edda;
+  color: #155724;
 }
 
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(0.8);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 1;
-    background-color: #eab308; /* Dot highlights yellow at peak */
-  }
+::v-deep .status-absent {
+  background-color: #f8d7da;
+  color: #721c24;
 }
