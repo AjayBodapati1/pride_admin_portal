@@ -3,13 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface User {
-  userId: number;
+  id: number;
   name: string;
   email: string;
 }
 
 export interface AttendancePayload {
-  userId: number;
+  id: number;
   date?: string;
   status: 'PRESENT' | 'ABSENT';
 }

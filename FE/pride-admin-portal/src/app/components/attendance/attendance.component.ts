@@ -27,7 +27,7 @@ export class AttendanceComponent implements OnInit {
   };
 
   columnDefs: ColDef[] = [
-    { field: 'id', headerName: 'ID', maxWidth: 100 },
+    { field: 'id', headerName: 'Employee ID', maxWidth: 100 },
     { field: 'name', headerName: 'Employee Name' },
     { field: 'email', headerName: 'Email' },
     {
@@ -74,17 +74,16 @@ export class AttendanceComponent implements OnInit {
       denyButtonColor: '#dc3545',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.submitAttendance(user.userId, 'PRESENT');
+        this.submitAttendance(user.id, 'PRESENT');
       } else if (result.isDenied) {
-        this.submitAttendance(user.userId, 'ABSENT');
+        this.submitAttendance(user.id, 'ABSENT');
       }
     });
   }
 
-  private submitAttendance(userId: number, status: 'PRESENT' | 'ABSENT'): void {
+  private submitAttendance(id: number, status: 'PRESENT' | 'ABSENT'): void {
     const payload = {
-      userId,
-      date: new Date().toISOString().split('T')[0],
+      id,
       status,
     };
 
