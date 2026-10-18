@@ -1,5 +1,6 @@
 package com.rehab.admin.service;
 
+import com.rehab.admin.execptions.EmailUserNotFoundException;
 import com.rehab.admin.model.User;
 import com.rehab.admin.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,7 @@ public class UserService {
 
     public User editUser(String email, User userDetails) {
         User existingUser = userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User not found with email: " + email));
+                .orElseThrow(() -> new EmailUserNotFoundException("User not found with email: " + email));
 
         existingUser.setName(userDetails.getName());
         existingUser.setDateOfBirth(userDetails.getDateOfBirth());

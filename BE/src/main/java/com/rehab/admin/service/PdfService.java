@@ -6,6 +6,7 @@ import com.lowagie.text.Image;
 import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.*;
 import com.lowagie.text.pdf.draw.LineSeparator;
+import com.rehab.admin.execptions.LogoNotFoundException;
 import com.rehab.admin.model.PdfRequest;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ import static java.awt.Color.BLACK;
 @Service
 public class PdfService {
 
-    public byte[] generatePdf(PdfRequest request) throws Exception {
+    public byte[] generatePdf(PdfRequest request) {
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
@@ -41,8 +42,12 @@ public class PdfService {
         header.setWidths(new float[]{1f, 5f});
         header.getDefaultCell().setBorder(Rectangle.NO_BORDER);
 
-        Image logo = Image.getInstance(
-                new ClassPathResource("logo.png").getURL());
+        Image logo = null;
+        try {
+            logo = Image.getInstance( new ClassPathResource("logo.png").getURL());
+        } catch (Exception e) {
+            throw new LogoNotFoundException("Logo not found");
+        }
 
         logo.scaleAbsolute(60, 60);
 

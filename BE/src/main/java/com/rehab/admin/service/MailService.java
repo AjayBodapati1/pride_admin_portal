@@ -1,5 +1,6 @@
 package com.rehab.admin.service;
 
+import com.rehab.admin.execptions.SendMailException;
 import com.rehab.admin.model.MailRequest;
 import com.rehab.admin.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ public class MailService {
             return "Mails to students sent successfully";
 
         } catch (Exception e) {
-            return "Error while sending mail";
+            return String.valueOf(new SendMailException("Error while sending mail."));
         }
     }
 
@@ -72,9 +73,8 @@ public class MailService {
             return "Mails to employees sent successfully";
 
         } catch (Exception e) {
-            return "Error while sending mail";
+            return String.valueOf(new SendMailException("Error while sending mail."));
         }
     }
-
 
 }

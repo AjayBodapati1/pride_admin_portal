@@ -86,7 +86,7 @@ public class AdminController {
     }
 
     @PostMapping(value = "/generate", produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<byte[]> generate(@RequestBody PdfRequest request) throws Exception {
+    public ResponseEntity<byte[]> generate(@RequestBody PdfRequest request){
 
         byte[] pdf = pdfService.generatePdf(request);
 
@@ -99,12 +99,8 @@ public class AdminController {
 
     @PostMapping("/attendance")
     public ResponseEntity<String> markAttendance(@RequestBody AttendanceDTO dto) {
-        try {
-            attendanceService.markAttendance(attendanceDtoMapper.toAttendanceEntity(dto));
-            return ResponseEntity.ok("Attendance recorded successfully");
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        attendanceService.markAttendance(attendanceDtoMapper.toAttendanceEntity(dto));
+        return ResponseEntity.ok("Attendance recorded successfully");
     }
 
 }

@@ -1,5 +1,6 @@
 package com.rehab.admin.service;
 
+import com.rehab.admin.execptions.AttendanceMarkedException;
 import com.rehab.admin.model.Attendance;
 import com.rehab.admin.model.User;
 import com.rehab.admin.repository.AttendanceRepository;
@@ -28,7 +29,7 @@ public class AttendanceService {
         LocalDate date = attendance.getAttendanceDate() != null ? attendance.getAttendanceDate() : LocalDate.now();
 
         if (attendanceRepository.existsByUserIdAndAttendanceDate(Long.valueOf(attendance.getUser().getId()), date)) {
-            throw new IllegalArgumentException("Attendance already marked for today.");
+            throw new AttendanceMarkedException( attendance.getUser().getName() +  "'s attendance already marked for today.");
         }
 
         attendance.setAttendanceDate(date);
