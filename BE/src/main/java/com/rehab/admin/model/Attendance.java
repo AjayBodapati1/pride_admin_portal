@@ -27,6 +27,11 @@ public class Attendance {
     @Enumerated(EnumType.STRING)
     private AttendanceStatus status;
 
+    public Attendance(User user, AttendanceStatus status) {
+        this.user = user;
+        this.status = status;
+    }
+
     public enum AttendanceStatus {
         PRESENT, ABSENT
     }

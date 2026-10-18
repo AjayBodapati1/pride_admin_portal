@@ -1,7 +1,5 @@
 package com.rehab.admin.service;
 
-
-import com.rehab.admin.controller.dto.AttendanceDto;
 import com.rehab.admin.model.Attendance;
 import com.rehab.admin.model.User;
 import com.rehab.admin.repository.AttendanceRepository;
@@ -26,20 +24,14 @@ public class AttendanceService {
         return userRepository.findAll();
     }
 
-    public void markAttendance(AttendanceDto dto) {
-        LocalDate date = dto.getDate() != null ? dto.getDate() : LocalDate.now();
+    public void markAttendance(Attendance attendance) {
+        LocalDate date = attendance.getAttendanceDate() != null ? attendance.getAttendanceDate() : LocalDate.now();
 
-        if (attendanceRepository.existsByUserIdAndAttendanceDate(dto.getUserId(), date)) {
+        if (attendanceRepository.existsByUserIdAndAttendanceDate(Long.valueOf(attendance.getUser().getId()), date)) {
             throw new IllegalArgumentException("Attendance already marked for today.");
         }
 
-        User user = userRepository.findById(String.valueOf(dto.getUserId()))
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        Attendance attendance = new Attendance();
-        attendance.setUser(user);
         attendance.setAttendanceDate(date);
-        attendance.setStatus(Attendance.AttendanceStatus.valueOf(dto.getStatus().toString().toUpperCase()));
 
         attendanceRepository.save(attendance);
     }

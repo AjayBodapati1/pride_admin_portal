@@ -45,4 +45,26 @@ public class User {
     @Column(nullable = false)
     private Boolean active;
 
+    public User(String name, LocalDate dateOfBirth, String fatherName, String mobileNumber, String email, LocalDate dateOfJoining, String role, Boolean active) {
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.fatherName = fatherName;
+        this.mobileNumber = mobileNumber;
+        this.email = email;
+        this.dateOfJoining = dateOfJoining;
+        this.role = role;
+        this.active = active;
+    }
+
+    public User(String name, LocalDate dateOfBirth, String fatherName, String mobileNumber, String email, LocalDate dateOfJoining, String password, String role, Boolean active) {
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.fatherName = fatherName;
+        this.mobileNumber = mobileNumber;
+        this.email = email;
+        this.dateOfJoining = dateOfJoining;
+        this.password = password;
+        this.role = role;
+        this.active = active;
+    }
 }

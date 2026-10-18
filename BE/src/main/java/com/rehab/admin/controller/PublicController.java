@@ -1,5 +1,7 @@
 package com.rehab.admin.controller;
 
+import com.rehab.admin.controller.dto.LoginCredentialsDTO;
+import com.rehab.admin.controller.mapper.CredentialsDtoMapper;
 import com.rehab.admin.model.LoginCredentials;
 import com.rehab.admin.model.User;
 import com.rehab.admin.service.PublicService;
@@ -16,14 +18,18 @@ public class PublicController {
     @Autowired
     private PublicService publicService;
 
+    @Autowired
+    private CredentialsDtoMapper credentialsDtoMapper;
+
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginCredentials credentials){
+    public ResponseEntity<String> login(@RequestBody LoginCredentialsDTO credentialsDTO){
+        LoginCredentials credentials = credentialsDtoMapper.toCredentialsEntity(credentialsDTO);
         return new ResponseEntity<>(publicService.verify(credentials), HttpStatus.OK) ;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody User user){
-        return new ResponseEntity<>(publicService.registerUser(user), HttpStatus.OK) ;
-    }
+//    @PostMapping("/register")
+//    public ResponseEntity<User> register(@RequestBody User user){
+//        return new ResponseEntity<>(publicService.registerUser(user), HttpStatus.OK) ;
+//    }
 
 }
