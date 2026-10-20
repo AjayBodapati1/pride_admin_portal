@@ -1,12 +1,16 @@
 package com.rehab.admin.controller.mapper;
 
 import com.rehab.admin.controller.dto.AttendanceDTO;
+import com.rehab.admin.controller.dto.AttendanceResponseDTO;
 import com.rehab.admin.model.Attendance;
+import com.rehab.admin.model.EmployeeAttendance;
 import com.rehab.admin.model.User;
 import com.rehab.admin.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class AttendanceDtoMapper {
@@ -21,6 +25,19 @@ public class AttendanceDtoMapper {
         User user = userRepository.findById(String.valueOf(dto.userId()))
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
         return new Attendance(user, dto.status());
+    }
+
+    public AttendanceResponseDTO toAttendanceResponseDto(EmployeeAttendance attendance){
+        return new AttendanceResponseDTO(
+                attendance.getDate(),
+                Attendance.AttendanceStatus.valueOf(attendance.getStatus())
+        );
+    }
+
+    public List<AttendanceResponseDTO> toAttendanceResponseDtoList(List<EmployeeAttendance> attendanceList){
+        return attendanceList.stream()
+                .map(this::toAttendanceResponseDto)
+                .toList();
     }
 
 }

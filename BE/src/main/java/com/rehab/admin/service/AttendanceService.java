@@ -2,6 +2,7 @@ package com.rehab.admin.service;
 
 import com.rehab.admin.execptions.AttendanceMarkedException;
 import com.rehab.admin.model.Attendance;
+import com.rehab.admin.model.EmployeeAttendance;
 import com.rehab.admin.model.User;
 import com.rehab.admin.repository.AttendanceRepository;
 import com.rehab.admin.repository.UserRepository;
@@ -35,5 +36,9 @@ public class AttendanceService {
         attendance.setAttendanceDate(date);
 
         attendanceRepository.save(attendance);
+    }
+
+    public List<EmployeeAttendance> getAttendance(Long userId, LocalDate fromDate, LocalDate toDate) {
+        return attendanceRepository.getEmployeeAttendance(userId, fromDate, toDate);
     }
 }

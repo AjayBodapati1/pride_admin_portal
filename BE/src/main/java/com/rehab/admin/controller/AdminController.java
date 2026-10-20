@@ -4,6 +4,7 @@ import com.rehab.admin.controller.dto.*;
 import com.rehab.admin.controller.mapper.AttendanceDtoMapper;
 import com.rehab.admin.controller.mapper.MailDtoMapper;
 import com.rehab.admin.controller.mapper.UserDtoMapper;
+import com.rehab.admin.model.EmployeeAttendance;
 import com.rehab.admin.model.MailRequest;
 import com.rehab.admin.model.PdfRequest;
 import com.rehab.admin.model.User;
@@ -103,4 +104,9 @@ public class AdminController {
         return ResponseEntity.ok("Attendance recorded successfully");
     }
 
+    @PostMapping("/getAttendance")
+    public ResponseEntity<List<AttendanceResponseDTO>> getAttendance(@RequestBody AttendanceRequestDTO requestDTO){
+        List<EmployeeAttendance> attendance = attendanceService.getAttendance(requestDTO.userId(), requestDTO.fromDate(), requestDTO.toDate());
+        return new ResponseEntity<>(attendanceDtoMapper.toAttendanceResponseDtoList(attendance), HttpStatus.OK);
+    }
 }
