@@ -4,11 +4,12 @@ import { AgGridModule } from 'ag-grid-angular';
 import { ColDef } from 'ag-grid-community';
 import Swal from 'sweetalert2';
 import { AttendanceService, User } from '../../services/attendance.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-attendance',
   standalone: true,
-  imports: [CommonModule, AgGridModule],
+  imports: [CommonModule, AgGridModule, RouterLink],
   templateUrl: './attendance.component.html',
   styleUrls: ['./attendance.component.css'],
 })
@@ -92,7 +93,8 @@ export class AttendanceComponent implements OnInit {
         Swal.fire('Success', response, 'success');
       },
       error: (err) => {
-        this.errorMessage = err.error || 'Could not record attendance.';
+        let errorObj = JSON.parse(err.error);
+        this.errorMessage = errorObj.detail || 'Unable to mark attendance';
         Swal.fire('Error', this.errorMessage, 'error');
       },
     });

@@ -1,5 +1,10 @@
 <div class="page-container">
-  <h2>Employee Attendance Management</h2>
+  <div class="table-header">
+    <h2>Employee Attendance Management</h2>
+    <button [routerLink]="['/employee-attendance']">
+      Get Employee Attendance
+    </button>
+  </div>
 
   <div *ngIf="errorMessage" class="error-alert">
     {{ errorMessage }}

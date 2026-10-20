@@ -69,3 +69,28 @@ h2 {
   background-color: #f8d7da;
   color: #721c24;
 }
+
+.page-container .table-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.page-container .table-header button{
+  font-size: medium;
+  color: #ffffff;
+  padding: 10px;
+  background-color: #1e293b;
+  border: 1px solid #fdfdfd;
+  border-radius: 10px;
+}
+
+.page-container .table-header button:hover{
+  cursor: pointer;
+  color: #1e293b;
+  font-weight: bold;
+  background-color: #ffffff;
+  border: 1px solid #1e293b;
+}

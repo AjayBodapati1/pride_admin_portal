@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AgGridModule } from 'ag-grid-angular';
 import { ColDef } from 'ag-grid-community';
@@ -8,9 +13,14 @@ import { EditButtonRendererComponent } from '../edit-button-renderer/edit-button
 
 @Component({
   selector: 'app-edit-user',
-  imports: [CommonModule, AgGridModule, ReactiveFormsModule, EditButtonRendererComponent],
+  imports: [
+    CommonModule,
+    AgGridModule,
+    ReactiveFormsModule,
+    EditButtonRendererComponent,
+  ],
   templateUrl: './edit-user.component.html',
-  styleUrl: './edit-user.component.css'
+  styleUrl: './edit-user.component.css',
 })
 export class EditUserComponent {
   public rowData: any[] = [];
@@ -20,7 +30,10 @@ export class EditUserComponent {
   public editForm!: FormGroup;
   private selectedUserEmail: string = '';
 
-  constructor(private http: HttpClient, private fb: FormBuilder) {
+  constructor(
+    private http: HttpClient,
+    private fb: FormBuilder,
+  ) {
     this.initForm();
     this.initGridColumns();
   }
@@ -34,11 +47,17 @@ export class EditUserComponent {
       name: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
       fatherName: ['', Validators.required],
-      mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-      email: [{ value: '', disabled: true }, [Validators.required, Validators.email]], // Email usually acts as an immutable identifier
+      mobileNumber: [
+        '',
+        [Validators.required, Validators.pattern('^[0-9]{10}$')],
+      ],
+      email: [
+        { value: '', disabled: true },
+        [Validators.required, Validators.email],
+      ], // Email usually acts as an immutable identifier
       dateOfJoining: ['', Validators.required],
       role: ['', Validators.required],
-      active: [true]
+      active: [true],
     });
   }
 
@@ -48,25 +67,28 @@ export class EditUserComponent {
       { field: 'email', headerName: 'Email' },
       { field: 'mobileNumber', headerName: 'Mobile' },
       { field: 'role', headerName: 'Role' },
-      { field: 'active', headerName: 'Status', valueFormatter: p => p.value ? 'Active' : 'Inactive' },
+      {
+        field: 'active',
+        headerName: 'Status',
+        valueFormatter: (p) => (p.value ? 'Active' : 'Inactive'),
+      },
       {
         headerName: 'Actions',
         cellRenderer: EditButtonRendererComponent,
         cellRendererParams: {
-          onClick: (userData: any) => this.openEditModal(userData)
+          onClick: (userData: any) => this.openEditModal(userData),
         },
         pinned: 'right',
-        width: 100
-      }
+        width: 100,
+      },
     ];
   }
 
   loadUsers() {
-    this.http.get<any[]>('http://localhost:8080/admin/getAll')
-      .subscribe({
-        next: (data) => this.rowData = data,
-        error: (err) => console.error('Failed to fetch users', err)
-      });
+    this.http.get<any[]>('http://localhost:8080/admin/getAll').subscribe({
+      next: (data) => (this.rowData = data),
+      error: (err) => console.error('Failed to fetch users', err),
+    });
   }
 
   openEditModal(user: any) {
@@ -84,14 +106,18 @@ export class EditUserComponent {
     if (this.editForm.invalid) return;
     const updatedUserData = this.editForm.getRawValue();
 
-    this.http.put(`http://localhost:8080/admin/editUser/${this.selectedUserEmail}`, updatedUserData)
+    this.http
+      .put(
+        `http://localhost:8080/admin/editUser/${this.selectedUserEmail}`,
+        updatedUserData,
+      )
       .subscribe({
         next: () => {
           alert('User updated successfully!');
           this.closeModal();
           this.loadUsers();
         },
-        error: (err) => console.error('Error updating user', err)
+        error: (err) => console.error('Error updating user', err),
       });
   }
 }
