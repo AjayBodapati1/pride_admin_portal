@@ -37,7 +37,6 @@ export class EditUserComponent {
       mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       email: [{ value: '', disabled: true }, [Validators.required, Validators.email]], // Email usually acts as an immutable identifier
       dateOfJoining: ['', Validators.required],
-      password: ['', Validators.required],
       role: ['', Validators.required],
       active: [true]
     });
