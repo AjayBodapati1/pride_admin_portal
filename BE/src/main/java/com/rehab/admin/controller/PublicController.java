@@ -1,5 +1,6 @@
 package com.rehab.admin.controller;
 
+import com.rehab.admin.controller.dto.ChangePasswordRequestDTO;
 import com.rehab.admin.controller.dto.LoginCredentialsDTO;
 import com.rehab.admin.controller.mapper.CredentialsDtoMapper;
 import com.rehab.admin.model.LoginCredentials;
@@ -31,5 +32,10 @@ public class PublicController {
 //    public ResponseEntity<User> register(@RequestBody User user){
 //        return new ResponseEntity<>(publicService.registerUser(user), HttpStatus.OK) ;
 //    }
+
+    @PutMapping("changePassword")
+    public ResponseEntity<String> changePassword(@RequestBody ChangePasswordRequestDTO requestDTO){
+        return new ResponseEntity<>(publicService.changePassword(requestDTO.email(), requestDTO.newPassword()), HttpStatus.OK);
+    }
 
 }

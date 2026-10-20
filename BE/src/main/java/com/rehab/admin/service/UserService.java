@@ -40,7 +40,6 @@ public class UserService {
         existingUser.setFatherName(userDetails.getFatherName());
         existingUser.setMobileNumber(userDetails.getMobileNumber());
         existingUser.setDateOfJoining(userDetails.getDateOfJoining());
-        existingUser.setPassword(userDetails.getPassword());
         existingUser.setRole(userDetails.getRole());
         existingUser.setActive(userDetails.getActive());
 

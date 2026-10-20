@@ -10,7 +10,6 @@ public record UserResponseDTO(
         String mobileNumber,
         String email,
         LocalDate dateOfJoining,
-        String password,
         String role,
         Boolean active
 ) {}

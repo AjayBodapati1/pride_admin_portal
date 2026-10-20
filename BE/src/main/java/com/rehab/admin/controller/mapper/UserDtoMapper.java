@@ -49,7 +49,6 @@ public class UserDtoMapper {
                 user.getMobileNumber(),
                 user.getEmail(),
                 user.getDateOfJoining(),
-                user.getPassword(),
                 user.getRole(),
                 user.getActive()
         );

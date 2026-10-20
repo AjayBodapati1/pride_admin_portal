@@ -1,5 +1,6 @@
 package com.rehab.admin.service;
 
+import com.rehab.admin.execptions.EmailUserNotFoundException;
 import com.rehab.admin.model.LoginCredentials;
 import com.rehab.admin.model.User;
 import com.rehab.admin.repository.UserRepository;
@@ -10,8 +11,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class PublicService {
@@ -40,5 +39,13 @@ public class PublicService {
         user.setActive(true);
         user.setPassword(encoder.encode(user.getPassword()));
         return userRepository.save(user);
+    }
+
+    public String changePassword(String email, String newPassword) {
+        User existingUser = userRepository.findByEmail(email)
+                .orElseThrow(()-> new EmailUserNotFoundException("User not found with email: " + email));
+        existingUser.setPassword(encoder.encode(newPassword));
+        userRepository.save(existingUser);
+        return "Password update successful.";
     }
 }
