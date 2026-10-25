@@ -3,6 +3,7 @@ package com.rehab.admin.service;
 import com.rehab.admin.execptions.SendMailException;
 import com.rehab.admin.model.MailRequest;
 import com.rehab.admin.model.User;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@Slf4j
 public class MailService {
 
     @Autowired
@@ -48,9 +50,11 @@ public class MailService {
                 mailMessage.setTo(user.getEmail());
                 javaMailSender.send(mailMessage);
             }
+            log.info("mail sent to all active students");
             return "Mails to students sent successfully";
 
         } catch (Exception e) {
+            log.error("error while sending mail");
             return String.valueOf(new SendMailException("Error while sending mail."));
         }
     }
@@ -70,9 +74,11 @@ public class MailService {
                 mailMessage.setTo(user.getEmail());
                 javaMailSender.send(mailMessage);
             }
+            log.info("mail sent to all active employees");
             return "Mails to employees sent successfully";
 
         } catch (Exception e) {
+            log.error("error while sending mail");
             return String.valueOf(new SendMailException("Error while sending mail."));
         }
     }

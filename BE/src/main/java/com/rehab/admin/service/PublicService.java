@@ -4,6 +4,7 @@ import com.rehab.admin.execptions.EmailUserNotFoundException;
 import com.rehab.admin.model.LoginCredentials;
 import com.rehab.admin.model.User;
 import com.rehab.admin.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class PublicService {
 
     @Autowired
@@ -32,12 +34,14 @@ public class PublicService {
         if(authentication.isAuthenticated()){
                 return jwtService.generateToken(credentials.getEmail());
         }
+        log.error("incorrect credentials");
         return "incorrect credentials";
     }
 
     public User registerUser(User user) {
         user.setActive(true);
         user.setPassword(encoder.encode(user.getPassword()));
+        log.info("{}'s registration successful", user.getName());
         return userRepository.save(user);
     }
 
@@ -46,6 +50,7 @@ public class PublicService {
                 .orElseThrow(()-> new EmailUserNotFoundException("User not found with email: " + email));
         existingUser.setPassword(encoder.encode(newPassword));
         userRepository.save(existingUser);
+        log.info("password update successful");
         return "Password update successful.";
     }
 }
