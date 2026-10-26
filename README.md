@@ -304,7 +304,7 @@ This project demonstrates practical experience in:
 ## Contact
 **Linkedin:** [Ajay BODAPATI](https://www.linkedin.com/in/ajay-bodapati)
 
-**GitHub:** [ajaybodapati01@gmail.com](https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=GTvVlcRzBkzFfNWtMPrQLFVcXTHlDnWBKpNGvftpZxJSwsSPjsMrQKctkVCpGpPBqKnRlVrNvHDnC)
+**Gmail:** [ajaybodapati01@gmail.com](https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=GTvVlcRzBkzFfNWtMPrQLFVcXTHlDnWBKpNGvftpZxJSwsSPjsMrQKctkVCpGpPBqKnRlVrNvHDnC)
 
 ---
 
